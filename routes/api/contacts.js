@@ -1,21 +1,21 @@
 import  express  from "express"
 import contactsController from "../../controllers/contacts-controller.js";
 import isEmptyBody from "../../middlewares/isEmptyBody.js"
-import isValidId from "../../middlewares/isValidid.js";
-import isEmptyFavorite from "../../middlewares/isEmpyFavorite.js";
+import isCheckId from "../../middlewares/isCheckId.js"
+import isEmptyFavorite from "../../middlewares/isEmpyFavorite.js"
 
 const contactsRouter = express.Router();
 
 contactsRouter.get('/', contactsController.getAll)
 
-contactsRouter.get('/:contactId', isValidId,  contactsController.getContact)
+contactsRouter.get('/:contactId', isCheckId,  contactsController.getContact)
 
 contactsRouter.post('/', isEmptyBody,  contactsController.add)
 
-contactsRouter.delete('/:contactId', isValidId,  contactsController.remove)
+contactsRouter.delete('/:contactId', isCheckId,  contactsController.remove)
 
-contactsRouter.put('/:contactId', isEmptyBody, isValidId,  contactsController.updateStatusContact)
+contactsRouter.put('/:contactId', isEmptyBody, isCheckId,  contactsController.updateStatusContact)
 
-contactsRouter.patch('/:contactId/favorite', isEmptyFavorite, isValidId,  contactsController.updateStatusContact)
+contactsRouter.patch('/:contactId/favorite', isEmptyFavorite, isCheckId,  contactsController.updateStatusContact)
 
 export default contactsRouter
